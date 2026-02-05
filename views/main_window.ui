@@ -187,7 +187,7 @@ border:none;</string>
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="widget" native="true">
+   <widget class="Canvas" name="widget" native="true">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -222,6 +222,14 @@ border:none;</string>
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Canvas</class>
+   <extends>QWidget</extends>
+   <header>canvas.py</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
