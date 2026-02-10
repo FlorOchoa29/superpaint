@@ -156,7 +156,7 @@ border:none;</string>
       <normaloff>../icons/square.png</normaloff>../icons/square.png</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnGuradar">
+   <widget class="QPushButton" name="btnGuardar">
     <property name="geometry">
      <rect>
       <x>270</x>
