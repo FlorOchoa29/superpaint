@@ -76,6 +76,7 @@ class Canvas(QWidget):
         if file_path:
             self.image = QImage(file_path[0])
             self.update()
+
     def draw_grid(self, value):
         with QPainter(self.image) as painter:
             painter.setPen(QPen(QColor("#f00"),1,Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap, Qt.PenJoinStyle.RoundJoin))
@@ -88,6 +89,7 @@ class Canvas(QWidget):
                 painter.drawLine(div*x,0,div*x,h)
                 painter.drawLine(0,div*x,w,div*x)
         self.update()
+
     def draw_star(self, value):
         self.clear()
         with QPainter(self.image) as painter:
@@ -105,6 +107,7 @@ class Canvas(QWidget):
                 painter.drawLine(mid_w,h-div*x, mid_w+(div*x),mid_h)
                 painter.drawLine(mid_w, h - div*x, mid_w-(div*x), mid_h)
         self.update()
+
     def draw_f(self, value):
         self.clear()
         with QPainter(self.image) as painter:
@@ -126,18 +129,74 @@ class Canvas(QWidget):
                 painter.drawLine(h,w-div*x,h-div*x,mid_w)
                 painter.drawLine(h-div*x,0,mid_h,div*x)
         self.update()
+
     def draw_t(self,value):
-        self.clear()
-        with QPainter(self.image) as painter:
-            w = self.image.width()
-            h = self.image.height()
-        for x in range(1,value):
-            painter.setPen(Qt.PenStyle.NoPen)
-            #Dibuja el cuadro blanco
-            painter.setBrush("#FFF")
-            rect = QRectF(10,10,30,30)
-            painter.drawRect(rect)
-            #Dibuja el cuadro negro
-            painter.setBrush("#000")
-            rect2 = QRectF(40,10,30,30)
-            painter.drawRect(rect2)
+     self.clear()
+     with QPainter(self.image) as painter:
+        w = self.image.width()
+        h = self.image.height()
+
+        div = int(w / int(value))
+
+        for x in range(0, value):
+            for y in range(0, value):
+                if (x + y) % 2 == 0:
+                    painter.setBrush(QColor("#fff"))
+                else:
+                    painter.setBrush(QColor("#000"))
+
+                painter.setPen(Qt.PenStyle.NoPen)
+                painter.drawRect(div*x, div*y, div, div)
+
+     self.update()
+
+    def draw_dstar(self,value):
+     self.clear()
+     with QPainter(self.image) as painter:
+        w = self.image.width()
+        h = self.image.height()
+        mid_w = w // 2
+        mid_h = h // 2
+        div = int(mid_w / int(value))
+        painter.drawLine(mid_w, 0, mid_w, h)
+        painter.drawLine(0, mid_h, w, mid_h)
+
+        for x in range(0, value):
+            painter.drawLine(mid_w, div * x, mid_w + (div * x), mid_h)
+            painter.drawLine(mid_w, div * x, mid_w - (div * x), mid_h)
+
+            painter.drawLine(mid_w, h - div * x, mid_w + (div * x), mid_h)
+            painter.drawLine(mid_w, h - div * x, mid_w - (div * x), mid_h)
+
+            painter.drawLine(div * x, mid_h, mid_w, mid_h + (div * x))
+            painter.drawLine(div * x, mid_h, mid_w, mid_h - (div * x))
+
+            painter.drawLine(w - div * x, mid_h, mid_w, mid_h + (div * x))
+            painter.drawLine(w - div * x, mid_h, mid_w, mid_h - (div * x))
+
+            painter.drawLine(0, div*x,mid_w + (div*x), mid_h)
+            painter.drawLine(0, div*x,mid_w - (div*x),mid_h)
+            #painter.draw1Line(0,h - div*x, 0, mid_h+ (div*x), mid_h)
+            #painter.draw1Line(0,h - div*x, 0, mid_h- (div*x), mid_h)
+            
+            
+
+     self.update()
+
+    def draw_circulo (self,value):
+     self.clear()
+     with QPainter(self.image) as painter:
+        w = self.image.width()
+        h = self.image.height()
+        mid_w = w // 2
+        mid_h = h // 2
+        div = int(mid_w / int(value))
+
+        for x in range(0, value):
+            painter.drawLine(div*x, 0, w - div*x, h)
+            painter.drawLine(w - div*x, 0, div*x, h)
+
+            painter.drawLine(0, div*x, w, h - div*x)
+            painter.drawLine(0, h - div*x, w, div*x)
+
+     self.update()
