@@ -164,23 +164,14 @@ class Canvas(QWidget):
         for x in range(0, value):
             painter.drawLine(mid_w, div * x, mid_w + (div * x), mid_h)
             painter.drawLine(mid_w, div * x, mid_w - (div * x), mid_h)
-
             painter.drawLine(mid_w, h - div * x, mid_w + (div * x), mid_h)
             painter.drawLine(mid_w, h - div * x, mid_w - (div * x), mid_h)
-
-            painter.drawLine(div * x, mid_h, mid_w, mid_h + (div * x))
-            painter.drawLine(div * x, mid_h, mid_w, mid_h - (div * x))
-
-            painter.drawLine(w - div * x, mid_h, mid_w, mid_h + (div * x))
-            painter.drawLine(w - div * x, mid_h, mid_w, mid_h - (div * x))
-
-            painter.drawLine(0, div*x,mid_w + (div*x), mid_h)
-            painter.drawLine(0, div*x,mid_w - (div*x),mid_h)
-            #painter.draw1Line(0,h - div*x, 0, mid_h+ (div*x), mid_h)
-            #painter.draw1Line(0,h - div*x, 0, mid_h- (div*x), mid_h)
+            painter.setPen(QPen(QColor("#ff0000"),1,Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap, Qt.PenJoinStyle.RoundJoin))
+            painter.drawLine(div * x, div*x, mid_w + (div * x), mid_h-(div*x))
+            painter.drawLine(div * x, div*x, mid_w - (div * x), mid_h+(div*x))
+            painter.drawLine(w - (div * x), h-(div*x), mid_w - (div*x), mid_h + (div * x))
+            painter.drawLine(w - (div * x), h-(div*x), mid_w + (div*x), mid_h - (div * x))
             
-            
-
      self.update()
 
     def draw_circulo (self,value):
